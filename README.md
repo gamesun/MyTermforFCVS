@@ -10,6 +10,7 @@ the "MyTerm" offer a great solution for RS232 serial port communication.
 Press button "GetInfo" to display all parameters setting in FCVS.  
 Press button "SetInfo" to transmit all parameters to FCVS.  
 Press button "Save" to let FCVS save all parameters into its EEPROM.  
+Press button "Clear Stage" to clear the stage to start a new voyage.  
 
 
 ![](doc/screenshot.jpg "screenshot")
