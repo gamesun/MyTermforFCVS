@@ -192,6 +192,8 @@ class MyApp(wx.App):
         self.frame.btnSetInfo.Bind(wx.EVT_BUTTON, self.OnBtnSetInfo)
         self.frame.btnSave.Bind(wx.EVT_BUTTON, self.OnBtnSave)
         
+        self.frame.btnClearStage.Bind(wx.EVT_BUTTON, self.OnBtnClearStage)
+        
         self.SetTopWindow(self.frame)
         self.frame.SetTitle( appInfo.title )
         self.frame.Show()
@@ -203,6 +205,10 @@ class MyApp(wx.App):
         
         return True
         
+    def OnBtnClearStage(self, evt = None):
+        if serialport.isOpen():
+            serialport.write('\n')
+            serialport.write('clrstg\n')
         
     def OnBtnGetInfo(self, evt = None):
         if serialport.isOpen():
@@ -623,10 +629,11 @@ class MyApp(wx.App):
         info.Copyright = appInfo.copyright
         info.Description = wordwrap(
             '\nMyTerm for FCVS offer a great solution for communication with the "Frequency-Controlled Voltage Source".\n\n'
-            '"MyTerm for FCVS" development is based on MyTerm, the "MyTerm" offer a great solution for RS232 serial port communication.\n\n'
+            '"MyTerm for FCVS" development is based on MyTerm, which offer a great solution for RS232 serial port communication.\n\n'
             'Press button "GetInfo" to display all parameters setting in FCVS.\n'
             'Press button "SetInfo" to transmit all parameters to FCVS.\n'
-            'Press button "Save" to let FCVS save all parameters into its EEPROM.\n',
+            'Press button "Save" to let FCVS save all parameters into its EEPROM.\n'
+            'Press button "Clear Stage" to clear the stage to start a new voyage.\n',
             550, wx.ClientDC(self.frame))
         info.WebSite = (appInfo.url, ("%s Home Page" % appInfo.title))
         info.Developers = [ "sun.yt" ]
