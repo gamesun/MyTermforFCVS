@@ -287,7 +287,11 @@ class MyApp(wx.App):
             
     def OnURL(self, evt = None):
         if evt.MouseEvent.LeftUp():
-            webbrowser.open(evt.GetEventObject().GetValue())
+            s = evt.GetURLStart()
+            e = evt.GetURLEnd()
+            strURL = self.frame.txtctlMain.GetRange(s, e)
+            webbrowser.open(strURL)
+            return
         evt.Skip()
         
     def OnClear(self, evt = None):
